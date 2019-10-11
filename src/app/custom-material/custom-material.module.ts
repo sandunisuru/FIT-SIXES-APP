@@ -9,6 +9,10 @@ import {
   MatGridListModule,
   MatProgressBarModule,
   MatDialogModule,
+  MatStepperModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  MatInputModule
 } from '@angular/material';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -30,6 +34,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatProgressBarModule,
     MatDialogModule,
     MatSidenavModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
   exports: [
     MatButtonModule, 
@@ -43,7 +51,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatGridListModule,
     MatProgressBarModule,
     MatDialogModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule
   ],
   declarations: []
 })
