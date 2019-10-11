@@ -5,15 +5,15 @@
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Enter Team Name</ng-template>
         <mat-form-field style="width: 100%;">
-          <input matInput placeholder="Team Name" required/>
+          <input matInput name="teamName" [ngModelOptions]="{standalone: true}" placeholder="Team Name" [(ngModel)]="teamName" required/>
         </mat-form-field>
         <mat-form-field style="width: 100%;">
           <mat-label>Select Company</mat-label>
-          <mat-select [(value)]="selected">
+          <mat-select [(value)]="selected" name="company">
             <mat-option>None</mat-option>
-            <mat-option value="option1">Option 1</mat-option>
-            <mat-option value="option2">Option 2</mat-option>
-            <mat-option value="option3">Option 3</mat-option>
+            <mat-option value="Sysco Labs">Sysco Labs</mat-option>
+            <mat-option value="99X Technologies">99X Technologies</mat-option>
+            <mat-option value="Virtusa">Virtusa</mat-option>
           </mat-select>
         </mat-form-field>
         <div>
@@ -25,7 +25,7 @@
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Enter Number of Team Members</ng-template>
         <mat-form-field style="width: 100%;">
-          <input matInput type="number" placeholder="Number of Members" required/>
+          <input matInput type="number" name="noMembers" [ngModelOptions]="{standalone: true}" placeholder="Number of Members" [(ngModel)]="noMembers" required/>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
@@ -39,14 +39,14 @@
       <mat-card>
         <mat-card-subtitle>Review Your Details.</mat-card-subtitle>
         <mat-card-content>
-          <p>Team Name:</p>
-          <p>Company Name:</p>
-          <p>No of Members:</p>
+          <p>Team Name: {{teamName}}</p>
+          <p>Company Name: {{selected}}</p>
+          <p>No of Members: {{noMembers}}</p>
         </mat-card-content>
         <mat-card-actions>
           <div>
             <button mat-button matStepperPrevious>Back</button>
-            <button mat-button (click)="stepper.reset()">Submit</button>
+            <button mat-button (click)="onSubmit()">Submit</button>
           </div>
         </mat-card-actions>
       </mat-card>
