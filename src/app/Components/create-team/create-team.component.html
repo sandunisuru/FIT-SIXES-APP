@@ -1,0 +1,55 @@
+<mat-card>
+  <mat-card-title>Add Team</mat-card-title>
+  <mat-horizontal-stepper [linear]="false" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Enter Team Name</ng-template>
+        <mat-form-field style="width: 100%;">
+          <input matInput name="teamName" [ngModelOptions]="{standalone: true}" placeholder="Team Name" [(ngModel)]="teamName" required/>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Select Company</mat-label>
+          <mat-select [(value)]="selected" name="company">
+            <mat-option>None</mat-option>
+            <mat-option value="Sysco Labs">Sysco Labs</mat-option>
+            <mat-option value="99X Technologies">99X Technologies</mat-option>
+            <mat-option value="Virtusa">Virtusa</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-raised-button color="accent" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Enter Number of Team Members</ng-template>
+        <mat-form-field style="width: 100%;">
+          <input matInput type="number" name="noMembers" [ngModelOptions]="{standalone: true}" placeholder="Number of Members" [(ngModel)]="noMembers" required/>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="accent" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+
+      <mat-card>
+        <mat-card-subtitle>Review Your Details.</mat-card-subtitle>
+        <mat-card-content>
+          <p>Team Name: {{teamName}}</p>
+          <p>Company Name: {{selected}}</p>
+          <p>No of Members: {{noMembers}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="onSubmit()">Submit</button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>

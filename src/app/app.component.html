@@ -1,7 +1,28 @@
-<div class="nav">
-      <app-side-nav></app-side-nav>
-</div>
-<div class="wrapper">
-      <router-outlet></router-outlet>
-      <div class="push"></div>
-</div>
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="First">
+    <ng-template mat-tab-label>
+      <mat-icon aria-label="Example icon-button with a heart icon"
+        >settings_voice</mat-icon
+      >
+      Home
+    </ng-template>
+    <router-outlet></router-outlet>
+  </mat-tab>
+  <mat-tab label="Second">
+    <ng-template mat-tab-label>
+      <mat-icon aria-label="Example icon-button with a heart icon"
+        >play_circle_filled</mat-icon
+      >
+      Listen
+    </ng-template>
+    <app-score></app-score>
+  </mat-tab>
+  <mat-tab label="Third">
+    <ng-template mat-tab-label>
+      <mat-icon aria-label="Example icon-button with a heart icon"
+        >timeline</mat-icon
+      >
+      Timeline
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>

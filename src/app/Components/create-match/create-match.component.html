@@ -1,0 +1,119 @@
+<mat-card>
+  <mat-card-title>Add Match</mat-card-title>
+  <mat-horizontal-stepper [linear]="false" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Match Settings</ng-template>
+        <mat-form-field style="width: 100%;">
+          <input
+            matInput
+            [name]="matchNo"
+            [ngModelOptions]="{ standalone: true }"
+            type="number"
+            placeholder="Match Number"
+            [(ngModel)]="matchNo"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <input
+            matInput
+            [name]="noOfOvers"
+            [ngModelOptions]="{ standalone: true }"
+            type="number"
+            placeholder="Number of Overs"
+            [(ngModel)]="noOfOvers"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <input
+            matInput
+            [name]="ballsPerOver"
+            [ngModelOptions]="{ standalone: true }"
+            type="number"
+            placeholder="Balls per Over"
+            [(ngModel)]="ballsPerOver"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Select Match Type</mat-label>
+          <mat-select [(value)]="matchType" name="matchType">
+            <mat-option>None</mat-option>
+            <mat-option value="basic">Basic Stage</mat-option>
+            <mat-option value="semi">Semi Final</mat-option>
+            <mat-option value="final">Final</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-raised-button color="accent" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Team Details</ng-template>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Batting Team</mat-label>
+          <mat-select [(value)]="battingTeam" name="battingTeam">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let team of playingTeams" [value]="team.teamId">{{team.teamName}} - {{team.teamCompany}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Balling Team</mat-label>
+          <mat-select [(value)]="ballingTeam" name="ballingTeam">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let team of playingTeams" [value]="team.teamId">{{team.teamName}} - {{team.teamCompany}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="accent" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+
+      <mat-card>
+        <mat-card-subtitle>Review Your Details.</mat-card-subtitle>
+        <mat-card-content>
+          <table style="width:100%">
+            <tr>
+              <td>Match Number: </td>
+              <td>{{matchNo}}</td>
+            </tr>
+            <tr>
+              <td>Number of Overs: </td>
+              <td>{{noOfOvers}}</td>
+            </tr>
+            <tr>
+              <td>Balls per Over:</td>
+              <td>{{ballsPerOver}}</td>
+            </tr>
+            <tr>
+              <td>Batting Team:</td>
+              <td>{{searchArray(battingTeam)}}</td>
+            </tr>
+            <tr>
+              <td>Balling Team:</td>
+              <td>{{searchArray(ballingTeam)}}</td>
+            </tr>
+            <tr>
+              <td>Match Type:</td>
+              <td>{{matchType}}</td>
+            </tr>
+          </table>
+        </mat-card-content>
+        <mat-card-actions>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="onSubmit()">Submit</button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>
