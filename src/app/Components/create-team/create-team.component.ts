@@ -10,6 +10,7 @@ export class CreateTeamComponent implements OnInit {
 
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  selected: any;
 
   constructor(private _formBuilder: FormBuilder) { }
 

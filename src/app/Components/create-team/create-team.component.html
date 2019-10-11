@@ -5,7 +5,7 @@
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Enter Team Name</ng-template>
         <mat-form-field style="width: 100%;">
-          <input matInput placeholder="Team Name" />
+          <input matInput placeholder="Team Name" required/>
         </mat-form-field>
         <mat-form-field style="width: 100%;">
           <mat-label>Select Company</mat-label>
@@ -23,9 +23,9 @@
     </mat-step>
     <mat-step [stepControl]="secondFormGroup">
       <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Fill out your address</ng-template>
+        <ng-template matStepLabel>Enter Number of Team Members</ng-template>
         <mat-form-field style="width: 100%;">
-          <input matInput type="number" placeholder="Number of Members" />
+          <input matInput type="number" placeholder="Number of Members" required/>
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
