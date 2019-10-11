@@ -27,7 +27,6 @@ export class CreateMatchComponent implements OnInit {
 
   ngOnInit() {
     this.teams.getAllTeams().subscribe(teams => {
-      
       this.playingTeams = teams;
       console.log(teams);
     });
@@ -40,8 +39,7 @@ export class CreateMatchComponent implements OnInit {
     });
   }
 
-  onSubmit(){
-
+  onSubmit() {
     let data = {
       matchNo: this.matchNo,
       noOfOvers: this.noOfOvers,
@@ -51,17 +49,20 @@ export class CreateMatchComponent implements OnInit {
       battingTeamName: this.searchArray(this.battingTeam),
       ballingTeamName: this.searchArray(this.ballingTeam),
       matchType: this.matchType
-    }
-    
-    this.match.createMatch(data);
+    };
 
+    this.match.createMatch(data);
   }
 
-  searchArray(id){
-    for (var i=0; i < this.playingTeams.length; i++) {
-        if (this.playingTeams[i].teamId === id) {
-            return this.playingTeams[i].teamName + " - " + this.playingTeams[i].teamCompany;
-        }
+  searchArray(id) {
+    for (var i = 0; i < this.playingTeams.length; i++) {
+      if (this.playingTeams[i].teamId === id) {
+        return (
+          this.playingTeams[i].teamName +
+          " - " +
+          this.playingTeams[i].teamCompany
+        );
+      }
     }
-}
+  }
 }

@@ -5,7 +5,14 @@
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Enter Team Name</ng-template>
         <mat-form-field style="width: 100%;">
-          <input matInput name="teamName" [ngModelOptions]="{standalone: true}" placeholder="Team Name" [(ngModel)]="teamName" required/>
+          <input
+            matInput
+            name="teamName"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="Team Name"
+            [(ngModel)]="teamName"
+            required
+          />
         </mat-form-field>
         <mat-form-field style="width: 100%;">
           <mat-label>Select Company</mat-label>
@@ -25,7 +32,15 @@
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Enter Number of Team Members</ng-template>
         <mat-form-field style="width: 100%;">
-          <input matInput type="number" name="noMembers" [ngModelOptions]="{standalone: true}" placeholder="Number of Members" [(ngModel)]="noMembers" required/>
+          <input
+            matInput
+            type="number"
+            name="noMembers"
+            [ngModelOptions]="{ standalone: true }"
+            placeholder="Number of Members"
+            [(ngModel)]="noMembers"
+            required
+          />
         </mat-form-field>
         <div>
           <button mat-button matStepperPrevious>Back</button>
@@ -39,9 +54,9 @@
       <mat-card>
         <mat-card-subtitle>Review Your Details.</mat-card-subtitle>
         <mat-card-content>
-          <p>Team Name: {{teamName}}</p>
-          <p>Company Name: {{selected}}</p>
-          <p>No of Members: {{noMembers}}</p>
+          <p>Team Name: {{ teamName }}</p>
+          <p>Company Name: {{ selected }}</p>
+          <p>No of Members: {{ noMembers }}</p>
         </mat-card-content>
         <mat-card-actions>
           <div>
