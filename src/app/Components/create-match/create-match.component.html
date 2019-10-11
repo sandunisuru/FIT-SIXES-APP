@@ -18,22 +18,22 @@
         <mat-form-field style="width: 100%;">
           <input
             matInput
-            [name]="matchStage"
+            [name]="noOfOvers"
             [ngModelOptions]="{ standalone: true }"
             type="number"
-            placeholder="Match Type"
-            [(ngModel)]="matchStage"
+            placeholder="Number of Overs"
+            [(ngModel)]="noOfOvers"
             required
           />
         </mat-form-field>
         <mat-form-field style="width: 100%;">
           <input
             matInput
-            [name]="noOfOvers"
+            [name]="ballsPerOver"
             [ngModelOptions]="{ standalone: true }"
             type="number"
-            placeholder="Number of Overs"
-            [(ngModel)]="noOfOvers"
+            placeholder="Balls per Over"
+            [(ngModel)]="ballsPerOver"
             required
           />
         </mat-form-field>
