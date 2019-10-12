@@ -2,11 +2,15 @@ import { Injectable } from "@angular/core";
 import * as uuid from "uuid";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class MatchService {
+  noOfOvers = 0;
+  ballsPerOver = 0;
+  private subscription: Subscription;
   constructor(private db: AngularFireDatabase, private router: Router) {}
 
   createMatch(data) {
@@ -44,16 +48,62 @@ export class MatchService {
       });
   }
 
-  getNotCompletedMatches(){
-    return this.db.list('match', ref => ref.orderByChild('status').equalTo('notstarted')).valueChanges();
+  getNotCompletedMatches() {
+    return this.db
+      .list("match", ref => ref.orderByChild("status").startAt("notstarted"))
+      .valueChanges();
   }
 
-  startNewMatch(data){
+  getCurrentMatch(matchId, callback) {
+    const itemRef = this.db.object("match/" + matchId);
+    
+    this.subscription = itemRef.valueChanges().subscribe(result => {
 
+      console.log(result["noOfOvers"])
+      this.noOfOvers = result["noOfOvers"];
+      this.ballsPerOver = result["ballsPerOver"];
+      this.subscription.unsubscribe();
+      callback();
+    });
+
+    
+  }
+
+  startNewMatch(data) {
     let matchId = data.matchId;
 
-    const itemRef = this.db.object('match/' + matchId);
+    const itemRef = this.db.object("match/" + matchId);
 
-    itemRef.update({ status: "ongoing", pitch: data.pitch });
+    this.getCurrentMatch(matchId, () => {
+      itemRef.update({ status: "notstarted ongoing", pitch: data.pitch });
+
+      if (data.inning === "Inning1") {
+        let inningRef = this.db.object("match/" + matchId + "/Inning1");
+
+        inningRef.set({
+          totalScore: 0,
+          numberOfBallsLeft: this.noOfOvers * this.ballsPerOver,
+          battingTeamId: data.battingTeamId,
+          battingTeamName: data.battingTeamName,
+          ballingTeamId: data.ballingTeamId,
+          ballingTeamName: data.ballingTeamName,
+          wickets: 0
+        });
+        console.log(data);
+      } else if (data.inning === "Inning2") {
+        let inningRef = this.db.object("match/" + matchId + "/Inning2");
+
+        inningRef.set({
+          totalScore: 0,
+          numberOfBallsLeft: this.noOfOvers * this.ballsPerOver,
+          battingTeamId: data.battingTeamId,
+          battingTeamName: data.battingTeamName,
+          ballingTeamId: data.ballingTeamId,
+          ballingTeamName: data.ballingTeamName,
+          wickets: 0
+        });
+        console.log(data);
+      }
+    });
   }
 }
