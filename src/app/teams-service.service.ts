@@ -39,6 +39,6 @@ export class TeamsServiceService {
   }
 
   getAllTeams(){
-    return this.db.list('teams').valueChanges();;
+    return this.db.list('teams').valueChanges();
   }
 }

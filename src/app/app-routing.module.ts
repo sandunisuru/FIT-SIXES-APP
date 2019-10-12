@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './Components/home/home.component';
 import { CreateTeamComponent } from './Components/create-team/create-team.component';
 import { CreateMatchComponent } from './Components/create-match/create-match.component';
+import { StartMatchComponent } from './Components/start-match/start-match.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'add_match',
     component: CreateMatchComponent
+  },
+  {
+    path: 'start_match',
+    component: StartMatchComponent
   },
 ];
 

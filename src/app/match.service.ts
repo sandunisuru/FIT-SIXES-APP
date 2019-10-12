@@ -15,7 +15,7 @@ export class MatchService {
     const itemRef = this.db.object("match/" + matchId);
 
     const promise = itemRef.set({
-      teamId: matchId,
+      matchId: matchId,
       matchNo: data.matchNo,
       noOfOvers: data.noOfOvers,
       ballsPerOver: data.ballsPerOver,
@@ -24,7 +24,8 @@ export class MatchService {
       team1TeamName: data.team1Name,
       team2TeamName: data.team2Name,
       matchType: data.matchType,
-      pitch: 0
+      pitch: 0,
+      status: "notstarted"
     });
 
     return promise
@@ -41,5 +42,18 @@ export class MatchService {
           message: err
         };
       });
+  }
+
+  getNotCompletedMatches(){
+    return this.db.list('match', ref => ref.orderByChild('status').equalTo('notstarted')).valueChanges();
+  }
+
+  startNewMatch(data){
+
+    let matchId = data.matchId;
+
+    const itemRef = this.db.object('match/' + matchId);
+
+    itemRef.update({ status: "ongoing", pitch: data.pitch });
   }
 }
