@@ -6,7 +6,7 @@
         <ng-template matStepLabel>Match Details</ng-template>
         <mat-form-field style="width: 100%;">
           <mat-label>Select Match</mat-label>
-          <mat-select [(ngModel)]="selectedMatch" [ngModelOptions]="{standalone: true}" name="selectedMatch">
+          <mat-select [(ngModel)]="selectedMatch" (selectionChange)="changedTeam($event.value)" [ngModelOptions]="{standalone: true}" name="selectedMatch">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let match of notCompletedMatches" [value]="match.matchNo"
               >{{ match.team1TeamName }} vs. {{ match.team2TeamName }} - {{match.matchType}}</mat-option

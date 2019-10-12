@@ -40,6 +40,18 @@ export class StartMatchComponent implements OnInit {
     }
   }
 
+  changedTeam(e){
+    
+    this.selectedMatch = e;
+    this.pitch = this.getPitch(this.selectedMatch);
+    if (this.getCompletedInning(this.selectedMatch)) {
+      this.inning = "Inning2";
+    }
+    else{
+      this.inning = "Inning1";
+    }
+  }
+
   startMatch(){
 
     let matchId = this.getMatchId(this.selectedMatch);
