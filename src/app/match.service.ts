@@ -19,11 +19,12 @@ export class MatchService {
       matchNo: data.matchNo,
       noOfOvers: data.noOfOvers,
       ballsPerOver: data.ballsPerOver,
-      battingTeamId: data.battingTeamId,
-      ballingTeamId: data.ballingTeamId,
-      battingTeamName: data.battingTeamName,
-      ballingTeamName: data.ballingTeamName,
-      matchType: data.matchType
+      team1TeamId: data.team1Id,
+      team2TeamId: data.team2Id,
+      team1TeamName: data.team1Name,
+      team2TeamName: data.team2Name,
+      matchType: data.matchType,
+      pitch: 0
     });
 
     return promise

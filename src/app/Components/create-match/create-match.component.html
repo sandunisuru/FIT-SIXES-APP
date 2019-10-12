@@ -55,8 +55,8 @@
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Team Details</ng-template>
         <mat-form-field style="width: 100%;">
-          <mat-label>Batting Team</mat-label>
-          <mat-select [(value)]="battingTeam" name="battingTeam">
+          <mat-label>Team 1</mat-label>
+          <mat-select [(value)]="team1" name="team1">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let team of playingTeams" [value]="team.teamId"
               >{{ team.teamName }} - {{ team.teamCompany }}</mat-option
@@ -64,8 +64,8 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field style="width: 100%;">
-          <mat-label>Balling Team</mat-label>
-          <mat-select [(value)]="ballingTeam" name="ballingTeam">
+          <mat-label>Team 2</mat-label>
+          <mat-select [(value)]="team2" name="team2">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let team of playingTeams" [value]="team.teamId"
               >{{ team.teamName }} - {{ team.teamCompany }}</mat-option
@@ -99,11 +99,11 @@
             </tr>
             <tr>
               <td>Batting Team:</td>
-              <td>{{ searchArray(battingTeam) }}</td>
+              <td>{{ searchArray(team1) }}</td>
             </tr>
             <tr>
               <td>Balling Team:</td>
-              <td>{{ searchArray(ballingTeam) }}</td>
+              <td>{{ searchArray(team2) }}</td>
             </tr>
             <tr>
               <td>Match Type:</td>

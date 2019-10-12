@@ -15,8 +15,8 @@ export class CreateMatchComponent implements OnInit {
   noOfOvers = 5;
   ballsPerOver = 6;
   playingTeams = [];
-  battingTeam = "";
-  ballingTeam = "";
+  team1 = "";
+  team2 = "";
   matchType = "";
 
   constructor(
@@ -44,10 +44,10 @@ export class CreateMatchComponent implements OnInit {
       matchNo: this.matchNo,
       noOfOvers: this.noOfOvers,
       ballsPerOver: this.ballsPerOver,
-      battingTeamId: this.battingTeam,
-      ballingTeamId: this.ballingTeam,
-      battingTeamName: this.searchArray(this.battingTeam),
-      ballingTeamName: this.searchArray(this.ballingTeam),
+      team1Id: this.team1,
+      team2Id: this.team2,
+      team1Name: this.searchArray(this.team1),
+      team2Name: this.searchArray(this.team2),
       matchType: this.matchType
     };
 
