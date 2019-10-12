@@ -15,8 +15,8 @@ export class CreateMatchComponent implements OnInit {
   noOfOvers = 5;
   ballsPerOver = 6;
   playingTeams = [];
-  battingTeam = "";
-  ballingTeam = "";
+  team1 = "";
+  team2 = "";
   matchType = "";
 
   constructor(
@@ -27,7 +27,6 @@ export class CreateMatchComponent implements OnInit {
 
   ngOnInit() {
     this.teams.getAllTeams().subscribe(teams => {
-      
       this.playingTeams = teams;
       console.log(teams);
     });
@@ -40,28 +39,30 @@ export class CreateMatchComponent implements OnInit {
     });
   }
 
-  onSubmit(){
-
+  onSubmit() {
     let data = {
       matchNo: this.matchNo,
       noOfOvers: this.noOfOvers,
       ballsPerOver: this.ballsPerOver,
-      battingTeamId: this.battingTeam,
-      ballingTeamId: this.ballingTeam,
-      battingTeamName: this.searchArray(this.battingTeam),
-      ballingTeamName: this.searchArray(this.ballingTeam),
+      team1Id: this.team1,
+      team2Id: this.team2,
+      team1Name: this.searchArray(this.team1),
+      team2Name: this.searchArray(this.team2),
       matchType: this.matchType
-    }
-    
-    this.match.createMatch(data);
+    };
 
+    this.match.createMatch(data);
   }
 
-  searchArray(id){
-    for (var i=0; i < this.playingTeams.length; i++) {
-        if (this.playingTeams[i].teamId === id) {
-            return this.playingTeams[i].teamName + " - " + this.playingTeams[i].teamCompany;
-        }
+  searchArray(id) {
+    for (var i = 0; i < this.playingTeams.length; i++) {
+      if (this.playingTeams[i].teamId === id) {
+        return (
+          this.playingTeams[i].teamName +
+          " - " +
+          this.playingTeams[i].teamCompany
+        );
+      }
     }
-}
+  }
 }
