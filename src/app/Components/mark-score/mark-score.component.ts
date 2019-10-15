@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatchService } from "../../match.service";
+import { ScoreService } from "../../score.service";
 
 @Component({
   selector: 'app-mark-score',
@@ -15,7 +16,14 @@ export class MarkScoreComponent implements OnInit {
   type: "";
   inningNo: any;
   matchArray: any;
-  constructor(private match: MatchService) {
+  selectedValue: any;
+  total: any;
+  wickets: any;
+  ballNo: 0;
+  allBalls: 0;
+  showOvers: any;
+  startNoOfBalls: 0;
+  constructor(private match: MatchService, private score: ScoreService) {
     this.matchId = localStorage.getItem("matchId").toString();
     this.inning = localStorage.getItem("inning").toString();
 
@@ -29,13 +37,42 @@ export class MarkScoreComponent implements OnInit {
 
       this.inningNo = ((this.inning == "Inning1")?"1st Inning":"2nd Inning");
 
+      this.total = this.matchArray[this.inning].totalScore;
+      this.wickets = this.matchArray[this.inning].wickets;
+
+      this.allBalls = this.matchArray[this.inning].numberOfBallsLeft;
+
+      this.showOvers = Math.trunc((this.matchArray.noOfOvers*this.matchArray.ballsPerOver - this.allBalls)/this.matchArray.ballsPerOver) + "." + (this.matchArray.noOfOvers*this.matchArray.ballsPerOver - this.allBalls)%this.matchArray.ballsPerOver;
     })
 
    }
 
   ngOnInit() {
     
+    this.ballNo = 0;
     
+  }
+
+  setValue(val){
+    this.ballNo++;
+    this.selectedValue = val;
+  }
+
+  submitBall(){
+    
+
+    var data = {
+      matchId : this.matchId,
+      inning : this.inning,
+      ball: this.selectedValue,
+      ballNo: this.ballNo,
+      currentScore: this.total,
+      currentWicket: this.wickets,
+      currentRemainigBalls: this.allBalls
+    };
+
+
+    this.score.submitBall(data);
   }
 
 }

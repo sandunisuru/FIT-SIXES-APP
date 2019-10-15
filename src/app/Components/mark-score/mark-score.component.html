@@ -3,17 +3,30 @@
   <mat-card-subtitle>{{ type }} Match : {{ inningNo }}</mat-card-subtitle>
 
   <mat-card-content>
-      <div class="example-button-row">
-          <button mat-fab>Basic</button>
-          <button mat-fab color="primary">Primary</button>
-          <button mat-fab color="accent">Accent</button>
-          <button mat-fab color="warn">Warn</button>
-          <button mat-fab disabled>Disabled</button>
-          <button mat-fab aria-label="Example icon-button with a heart icon">
-            <mat-icon>favorite</mat-icon>
-          </button>
-          <a mat-fab routerLink=".">Link</a>
-        </div>
-        
+    <mat-card-title>Total : {{total}} | Wickets: {{wickets}}</mat-card-title>
+    <mat-card-title>Over : {{showOvers}}</mat-card-title>
+    <br />
+    <mat-card-title>You have Selected: {{ selectedValue }}</mat-card-title>
+    <div class="example-button-row" style="text-align: center;">
+      <button mat-fab class="button-size" (click)="setValue('0')">0</button>
+      <button mat-fab class="button-size" (click)="setValue('1')">1</button>
+      <button mat-fab class="button-size" (click)="setValue('2')">2</button>
+      <button mat-fab class="button-size" (click)="setValue('3')">3</button>
+    </div>
+    <div class="example-button-row" style="text-align: center;">
+      <button mat-fab color="primary" class="button-size" (click)="setValue('4')">4</button>
+      <button mat-fab color="primary" class="button-size" (click)="setValue('6')">6</button>
+    </div>
+    <div class="example-button-row" style="text-align: center;">
+      <button mat-fab color="warn" class="button-size" (click)="setValue('W')">Wicket</button>
+      <button mat-fab color="warn" class="button-size" (click)="setValue('NB')">NB</button>
+      <button mat-fab color="warn" class="button-size" (click)="setValue('WD')">Wide</button>
+    </div>
+    <br>
+    <mat-divider></mat-divider>
+    <div class="example-button-row" style="margin-top: 5px;">
+      <button mat-raised-button color="accent">Previous</button>
+      <button mat-raised-button style="float: right;" (click)="submitBall()" color="primary">Next</button>
+    </div>
   </mat-card-content>
 </mat-card>

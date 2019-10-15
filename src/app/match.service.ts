@@ -103,7 +103,6 @@ export class MatchService {
           ballingTeamName: data.ballingTeamName,
           wickets: 0
         });
-        console.log(data);
       }
     });
   }

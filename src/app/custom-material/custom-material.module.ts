@@ -9,6 +9,7 @@ import {
   MatGridListModule,
   MatProgressBarModule,
   MatDialogModule,
+  MatDividerModule,
   MatStepperModule,
   MatFormFieldModule,
   MatSelectModule,
@@ -38,6 +39,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDividerModule,
     MatSelectModule,
     MatButtonToggleModule
   ],
@@ -58,7 +60,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDividerModule
   ],
   declarations: []
 })
