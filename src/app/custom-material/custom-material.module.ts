@@ -9,6 +9,7 @@ import {
   MatGridListModule,
   MatProgressBarModule,
   MatDialogModule,
+  MatDividerModule,
   MatStepperModule,
   MatFormFieldModule,
   MatSelectModule,
@@ -18,6 +19,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   imports: [
@@ -37,7 +39,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatDividerModule,
+    MatSelectModule,
+    MatButtonToggleModule
   ],
   exports: [
     MatButtonModule, 
@@ -55,7 +59,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatStepperModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonToggleModule,
+    MatDividerModule
   ],
   declarations: []
 })

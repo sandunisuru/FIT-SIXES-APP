@@ -5,6 +5,7 @@ import { HomeComponent } from './Components/home/home.component';
 import { CreateTeamComponent } from './Components/create-team/create-team.component';
 import { CreateMatchComponent } from './Components/create-match/create-match.component';
 import { StartMatchComponent } from './Components/start-match/start-match.component';
+import { MarkScoreComponent } from './Components/mark-score/mark-score.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'start_match',
     component: StartMatchComponent
+  },
+  {
+    path: 'mark_score',
+    component: MarkScoreComponent
   },
 ];
 
