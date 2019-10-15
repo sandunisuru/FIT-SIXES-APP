@@ -90,6 +90,7 @@ export class MatchService {
           wickets: 0
         });
         console.log(data);
+        
       } else if (data.inning === "Inning2") {
         let inningRef = this.db.object("match/" + matchId + "/Inning2");
 
@@ -105,5 +106,11 @@ export class MatchService {
         console.log(data);
       }
     });
+  }
+
+  getMatch(matchId){
+    return this.db
+      .list("match", ref => ref.orderByChild("matchId").equalTo(matchId))
+      .valueChanges();
   }
 }

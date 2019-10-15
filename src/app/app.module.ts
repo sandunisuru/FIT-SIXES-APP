@@ -16,6 +16,7 @@ import { ScoreComponent } from "./Components/score/score.component";
 import { CreateTeamComponent } from "./Components/create-team/create-team.component";
 import { CreateMatchComponent } from './Components/create-match/create-match.component';
 import { StartMatchComponent } from './Components/start-match/start-match.component';
+import { MarkScoreComponent } from './Components/mark-score/mark-score.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { StartMatchComponent } from './Components/start-match/start-match.compon
     ScoreComponent,
     CreateTeamComponent,
     CreateMatchComponent,
-    StartMatchComponent
+    StartMatchComponent,
+    MarkScoreComponent
   ],
   imports: [
     BrowserModule,

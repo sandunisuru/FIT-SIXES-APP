@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatchService } from "../../match.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-start-match",
@@ -20,7 +21,11 @@ export class StartMatchComponent implements OnInit {
   battingTeamName = this.searchArray(this.battingTeamId);
   ballingTeamName = this.searchArray(this.ballingTeamId);
 
-  constructor(private match: MatchService, private _formBuilder: FormBuilder) {}
+  constructor(
+    private match: MatchService,
+    private _formBuilder: FormBuilder,
+    private router: Router
+  ) {}
 
   getPitch(selectedTeam) {
     for (var i = 0; i < this.notCompletedMatches.length; i++) {
@@ -40,65 +45,63 @@ export class StartMatchComponent implements OnInit {
     }
   }
 
-  changedTeam(e){
-    
+  changedTeam(e) {
     this.selectedMatch = e;
     this.pitch = this.getPitch(this.selectedMatch);
     if (this.getCompletedInning(this.selectedMatch)) {
       this.inning = "Inning2";
-    }
-    else{
+    } else {
       this.inning = "Inning1";
     }
   }
 
-  startMatch(){
-
+  startMatch() {
     let matchId = this.getMatchId(this.selectedMatch);
 
     let data = {
-      matchId : matchId,
-      matchNo : this.selectedMatch,
-      inning : this.inning,
+      matchId: matchId,
+      matchNo: this.selectedMatch,
+      inning: this.inning,
       battingTeamId: this.battingTeamId,
       battingTeamName: this.searchArray(this.battingTeamId),
       ballingTeamId: this.ballingTeamId,
       ballingTeamName: this.searchArray(this.ballingTeamId),
       pitch: this.pitch
-    }
+    };
 
     this.match.startNewMatch(data);
+    
+    localStorage.setItem("matchId", matchId);
+    localStorage.setItem("inning", this.inning);
 
-
+    this.router.navigate(["/mark_score"]);
   }
 
-  getMatchId(selectedMatch){
+  getMatchId(selectedMatch) {
     for (var i = 0; i < this.notCompletedMatches.length; i++) {
       if (this.notCompletedMatches[i].matchNo === selectedMatch) {
         return this.notCompletedMatches[i].matchId;
       }
     }
-
   }
 
   getCompletedInning(selectedTeam) {
     for (var i = 0; i < this.notCompletedMatches.length; i++) {
       if (this.notCompletedMatches[i].matchNo === selectedTeam) {
-
         let team1 = {
-          teamId : this.notCompletedMatches[i].team1TeamId,
-          teamName : this.notCompletedMatches[i].team1TeamName
-        }
+          teamId: this.notCompletedMatches[i].team1TeamId,
+          teamName: this.notCompletedMatches[i].team1TeamName
+        };
 
         let team2 = {
-          teamId : this.notCompletedMatches[i].team2TeamId,
-          teamName : this.notCompletedMatches[i].team2TeamName
-        }
+          teamId: this.notCompletedMatches[i].team2TeamId,
+          teamName: this.notCompletedMatches[i].team2TeamName
+        };
 
         this.playingTeams.push(team1);
         this.playingTeams.push(team2);
 
-        if (this.notCompletedMatches[i].hasOwnProperty('Inning1')) {
+        if (this.notCompletedMatches[i].hasOwnProperty("Inning1")) {
           return true;
         } else {
           return false;
@@ -113,8 +116,7 @@ export class StartMatchComponent implements OnInit {
       this.pitch = this.getPitch(this.selectedMatch);
       if (this.getCompletedInning(this.selectedMatch)) {
         this.inning = "Inning2";
-      }
-      else{
+      } else {
         this.inning = "Inning1";
       }
     });
@@ -130,9 +132,7 @@ export class StartMatchComponent implements OnInit {
   searchArray(id) {
     for (var i = 0; i < this.playingTeams.length; i++) {
       if (this.playingTeams[i].teamId === id) {
-        return (
-          this.playingTeams[i].teamName
-        );
+        return this.playingTeams[i].teamName;
       }
     }
   }
